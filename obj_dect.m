@@ -1,9 +1,8 @@
-function [obj_pos,angular_points] = obj_dect(rgb)
+function obj_pos = obj_dect(rgb)
 %  物体识别
 %  obj_pos:物体中心坐标
 %  angular_points：六边形角点
     obj_pos = [];
-    angular_points = [];
     I = im2gray(rgb);
     [m,n] = size(I);
     thresh = graythresh(I);
@@ -33,8 +32,9 @@ function [obj_pos,angular_points] = obj_dect(rgb)
 %         end
 %         plot(rect(1) + rect(3)/2, rect(2) + rect(4)/2, 'g*');
 %         rectangle('position', rect, 'EdgeColor', 'r');
-        angular_points = [angular_points;Jp];
-        obj_pos = [obj_pos;center];
+%         angular_points = [angular_points;Jp];
+%         obj_pos = [obj_pos;center];
+          obj_pos = [obj_pos;center; Jp];
         
     end
 %  六边形角点提取
